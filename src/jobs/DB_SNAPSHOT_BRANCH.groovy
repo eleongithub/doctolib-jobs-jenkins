@@ -8,7 +8,7 @@ def job = mavenJob('DB_SNAPSHOT_BRANCH'){
     //    Définir le JDK par défaut
 
     // Description du job.
-    description('Ce job permet de lancer un snapshot de l\'application doctolib')
+    description('Ce job permet de lancer un snapshot de lapplication doctolib')
 
 
 //    Définir les paramètres du Job
