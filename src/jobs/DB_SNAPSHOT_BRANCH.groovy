@@ -1,4 +1,4 @@
-mavenJob('DB_SNAPSHOT_BRANCH'){
+def job = mavenJob('DB_SNAPSHOT_BRANCH'){
 
 //  Vider le repertoire de travail avant de lancer le build maven
     wrappers {
@@ -42,6 +42,6 @@ mavenJob('DB_SNAPSHOT_BRANCH'){
     }
 
     goals('clean deploy')
-    properties skipTests: true
+//    properties skipTests: true
 
 }
