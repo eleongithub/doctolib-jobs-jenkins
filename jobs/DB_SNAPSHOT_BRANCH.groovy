@@ -41,9 +41,9 @@ def job = mavenJob('DB_SNAPSHOT_BRANCH'){
         }
     }
 
-    goals('clean deploy') //-DskipTests
+    goals('clean deploy -DskipTests --settings settings.xml ')
     properties{
-        skipTests: true
+        skipTests:true
     }
 
 }
