@@ -36,6 +36,6 @@ def job = mavenJob('DB_RELEASE'){
         }
     }
 //    Liste des goals pour réaliser la release
-    goals('release:clean release:prepare release:perform clean -DskipTests')
+    goals('release:clean release:prepare release:perform clean -Darguments="-DskipTests"')
     mavenInstallation('Maven 3.3.9')
 }
