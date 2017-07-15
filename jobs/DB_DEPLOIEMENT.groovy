@@ -19,7 +19,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
     }
 
     steps {
-        shell(readFileFromWorkspace('scripts/DB_DEPLOIEMENT/lpi_deploy_dev_rec_init_script.sh'))
+        shell(readFileFromWorkspace('scripts/DB_DEPLOIEMENT/init_job.sh'))
     }
 //    TODO Envoyer un mail de notification à la fin du release
 }
