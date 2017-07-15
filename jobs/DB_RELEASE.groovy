@@ -1,3 +1,4 @@
+import utilities.DbUtils
 
 // Job de création d'une version de release stable de l'application et upload des livrables sur le repository Nexus
 def job = mavenJob('DB_RELEASE'){
@@ -38,4 +39,6 @@ def job = mavenJob('DB_RELEASE'){
 //    Liste des goals pour réaliser la release
     goals('release:clean release:prepare release:perform clean -Darguments="-DskipTests"')
     mavenInstallation('Maven 3.3.9')
+//    TODO Envoyer un mail de notification à la fin du release
 }
+DbUtils.defaultWrappers(job)
