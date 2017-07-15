@@ -28,4 +28,5 @@ def job = mavenJob('DB_SONAR_BRANCH'){
     goals('clean verify sonar:sonar -Dsonar.host.url=http://192.168.1.97:9000')
 //    TODO Envoyer un mail de notification à la fin du build sonar
 }
-DbUtils.defaultWrappers(job)
+DbUtils.defaultWrappersPolicy(job)
+DbUtils.defaultLogRotatorPolicy(job)

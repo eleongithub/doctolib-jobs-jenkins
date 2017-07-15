@@ -2,7 +2,7 @@ package utilities
 
 class DbUtils {
 
-    static logRotator(job) {
+    static defaultLogRotatorPolicy(job) {
         job.with {
             logRotator {
                 daysToKeep(15)
@@ -11,7 +11,7 @@ class DbUtils {
         }
     }
 
-    static defaultWrappers(job) {
+    static defaultWrappersPolicy(job) {
         job.with {
             wrappers {
                 colorizeOutput()

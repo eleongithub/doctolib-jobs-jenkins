@@ -36,4 +36,5 @@ def job = mavenJob('DB_RELEASE'){
     mavenInstallation('Maven 3.3.9')
 //    TODO Envoyer un mail de notification à la fin du release
 }
-DbUtils.defaultWrappers(job)
+DbUtils.defaultWrappersPolicy(job)
+DbUtils.defaultLogRotatorPolicy(job)

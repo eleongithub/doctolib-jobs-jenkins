@@ -28,4 +28,5 @@ def job = mavenJob('DB_SNAPSHOT_BRANCH'){
     goals('clean deploy -DskipTests')
 //    TODO Envoyer un mail de notification à la fin du snapshot
 }
-DbUtils.defaultWrappers(job)
+DbUtils.defaultWrappersPolicy(job)
+DbUtils.defaultLogRotatorPolicy(job)
