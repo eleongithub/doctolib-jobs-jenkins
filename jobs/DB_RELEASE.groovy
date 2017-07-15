@@ -40,23 +40,23 @@ def job = freeStyleJob('DB_RELEASE'){
 //    Liste des goals pour réaliser la release
     steps {
         maven {
-            goals('release:clean')
+            goals('release:clean release:prepare release:perform clean -Darguments="-DskipTests"')
             mavenInstallation('Maven 3.3.9')
         }
 
-        maven {
-            goals('release:prepare -Darguments="-DskipTests"')
-            mavenInstallation('Maven 3.3.9')
-        }
-
-        maven {
-            goals('release:perform -Darguments="-DskipTests"')
-            mavenInstallation('Maven 3.3.9')
-        }
-        maven {
-            goals('clean')
-            mavenInstallation('Maven 3.3.9')
-        }
+//        maven {
+//            goals('release:prepare -Darguments="-DskipTests"')
+//            mavenInstallation('Maven 3.3.9')
+//        }
+//
+//        maven {
+//            goals('release:perform -Darguments="-DskipTests"')
+//            mavenInstallation('Maven 3.3.9')
+//        }
+//        maven {
+//            goals('clean')
+//            mavenInstallation('Maven 3.3.9')
+//        }
     }
 
 }
