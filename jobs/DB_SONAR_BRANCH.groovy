@@ -17,7 +17,8 @@ def job = mavenJob('DB_SONAR_BRANCH'){
 //    Définir les paramètres du Job
     parameters {
         stringParam('branch', 'master', 'Branche à utiliser pour lancer un scan sonar')
-        // TODO - à integrer liste dynamique des branches. Example : http://www.nachum234.com/automation/jenkins/dynamically-list-git-branches-in-jenkins-parameter/
+//        TODO - à integrer liste dynamique des branches. Example : http://www.nachum234.com/automation/jenkins/dynamically-list-git-branches-in-jenkins-parameter/
+//        TODO - https://jenkinsci.github.io/job-dsl-plugin/#method/javaposse.jobdsl.dsl.helpers.BuildParametersContext.activeChoiceReactiveParam
     }
 
 //    Récupérer sur Git la branche à utiliser pour faire le snapshot
