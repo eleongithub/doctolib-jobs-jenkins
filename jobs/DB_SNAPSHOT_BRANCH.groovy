@@ -1,3 +1,4 @@
+
 def job = mavenJob('DB_SNAPSHOT_BRANCH'){
 
 //  Vider le repertoire de travail avant de lancer le build maven
@@ -41,9 +42,8 @@ def job = mavenJob('DB_SNAPSHOT_BRANCH'){
         }
     }
 
-    goals('clean deploy -DskipTests --settings settings.xml ')
+    goals('clean deploy -DskipTests')
     properties{
         skipTests:true
     }
-
 }
