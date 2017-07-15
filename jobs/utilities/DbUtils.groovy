@@ -1,6 +1,6 @@
 package utilities
 
-class CommonParameter {
+class DbUtils {
 
     static logRotator(job) {
         job.with {

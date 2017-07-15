@@ -1,14 +1,8 @@
-import utilities.CommonParameter
+import utilities.DbUtils
 
 // Inspirer en partie de ce lien http://www.baeldung.com/maven-release-nexus
 // Job de création d'une version de release stable de l'application et upload des livrables sur le repository Nexus
 def job = mavenJob('DB_RELEASE'){
-
-//  Vider le repertoire de travail avant de lancer un nouveau build
-//    wrappers {
-//        colorizeOutput()
-//        preBuildCleanup()
-//    }
 
     //    Définir le JDK par défaut
 
@@ -42,4 +36,4 @@ def job = mavenJob('DB_RELEASE'){
     mavenInstallation('Maven 3.3.9')
 //    TODO Envoyer un mail de notification à la fin du release
 }
-CommonParameter.defaultWrappers(job)
+DbUtils.defaultWrappers(job)
