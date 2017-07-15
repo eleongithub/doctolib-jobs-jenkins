@@ -32,27 +32,30 @@ def job = freeStyleJob('DB_RELEASE'){
                 url('https://github.com/eleongithub/doctolib.git')
             }
             branch('${branch}')
+            extensions{
+                localBranch('${branch}')
+            }
         }
     }
 //    Liste des goals pour réaliser la release
     steps {
         maven {
             goals('release:clean')
-            mavenInstallation('maven-3.3.9')
+            mavenInstallation('Maven 3.3.9')
         }
 
         maven {
             goals('release:prepare -Darguments="-DskipTests"')
-            mavenInstallation('maven-3.3.9')
+            mavenInstallation('Maven 3.3.9')
         }
 
         maven {
             goals('release:perform -Darguments="-DskipTests"')
-            mavenInstallation('maven-3.3.9')
+            mavenInstallation('Maven 3.3.9')
         }
         maven {
             goals('clean')
-            mavenInstallation('maven-3.3.9')
+            mavenInstallation('Maven 3.3.9')
         }
     }
 
