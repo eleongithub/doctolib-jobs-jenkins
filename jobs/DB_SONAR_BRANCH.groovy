@@ -30,5 +30,5 @@ def job = mavenJob('DB_SONAR_BRANCH'){
         }
     }
 
-    goals('sonar:sonar -Dsonar.host.url=http://192.168.1.97:9000')
+    goals('clean verify sonar:sonar -Dsonar.host.url=http://192.168.1.97:9000')
 }
