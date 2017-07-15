@@ -1,6 +1,6 @@
 
 // Job de création d'une version de release stable de l'application et upload des livrables sur le repository Nexus
-def job = mavenJob('DB_RELEASE'){
+def job = freeStyleJob('DB_RELEASE'){
 
 //  Vider le repertoire de travail avant de lancer un nouveau build
     wrappers {
@@ -35,7 +35,21 @@ def job = mavenJob('DB_RELEASE'){
         }
     }
 //    Liste des goals pour réaliser la release
-    goals('release:clean')
-    goals('release:prepare')
-    goals('release:perform')
+    steps {
+        maven {
+            goals('release:clean')
+        }
+
+        maven {
+            goals('release:prepare -Darguments="-DskipTests"')
+        }
+
+        maven {
+            goals('release:perform -Darguments="-DskipTests"')
+        }
+        maven {
+            goals('clean')
+        }
+    }
+
 }
