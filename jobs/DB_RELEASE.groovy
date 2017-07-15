@@ -35,5 +35,7 @@ def job = mavenJob('DB_RELEASE'){
         }
     }
 //    Liste des goals pour réaliser la release
-    goals('release:clean release:prepare release:perform  -DreleaseVersion=${releaseVersion} -DdevelopmentVersion=${developmentVersion} -DskipTests')
+    goals('release:clean')
+    goals('release:prepare')
+    goals('release:perform')
 }
