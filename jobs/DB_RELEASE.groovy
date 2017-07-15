@@ -5,10 +5,10 @@ import utilities.CommonParameter
 def job = mavenJob('DB_RELEASE'){
 
 //  Vider le repertoire de travail avant de lancer un nouveau build
-    wrappers {
-        colorizeOutput()
-        preBuildCleanup()
-    }
+//    wrappers {
+//        colorizeOutput()
+//        preBuildCleanup()
+//    }
 
     //    Définir le JDK par défaut
 
