@@ -1,12 +1,6 @@
-
+import utilities.DbUtils
 // Job de déploiement d'une version snapshots de l'application sur le repository Nexus
 def job = mavenJob('DB_SNAPSHOT_BRANCH'){
-
-//  Vider le repertoire de travail avant de lancer un nouveau build
-    wrappers {
-        colorizeOutput()
-        preBuildCleanup()
-    }
 
     //    Définir le JDK par défaut
 
@@ -34,3 +28,4 @@ def job = mavenJob('DB_SNAPSHOT_BRANCH'){
     goals('clean deploy -DskipTests')
 //    TODO Envoyer un mail de notification à la fin du snapshot
 }
+DbUtils.defaultWrappers(job)
