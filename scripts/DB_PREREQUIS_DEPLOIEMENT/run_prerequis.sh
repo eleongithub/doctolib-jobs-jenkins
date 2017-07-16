@@ -6,13 +6,10 @@ export ANSIBLE_HOST_KEY_CHECKING="False"
 export ANSIBLE_KEEP_REMOTE_FILES=1
 
 echo "==== Begin Pre-Requis tasks on environment ${environment} ===="
-echo "Name of the current directory"
+echo "Current directory"
 pwd
-echo "List of files in the current directory"
-ls -lrt
 
 # Debug options
-
 debug_option=""
 if [ "${debug}" == "true" ]; then
     debug_option="-vvvv"
