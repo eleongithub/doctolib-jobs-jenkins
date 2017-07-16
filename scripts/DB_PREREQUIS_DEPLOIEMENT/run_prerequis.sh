@@ -10,7 +10,7 @@ ls -lrt
 
 debug_option=""
 if [ "${debug}" == "true" ]; then
- debug_option="-vvvv"
+    debug_option="-vvvv"
 fi
 
 echo "-- Ansible version --"
