@@ -18,7 +18,7 @@ fi
 echo "-- Ansible version --"
 ansible --version
 echo "---------------------"
-echo $vaultPassword > vault_passwprd.txt
+echo ${vaultPassword} > vault_passwprd.txt
 ansible-playbook --vault-password-file vault_passwprd.txt -i inventory/${environment}/hosts.yml -e "env=${environment}" prerequis.yml ${debug_option}
 rm vault_passwprd.txt
 
