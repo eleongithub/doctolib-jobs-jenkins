@@ -1,5 +1,10 @@
 # On utilise set +x pour ne pas afficher les commandes sur la console
 set +x
+set -e
+export ANSIBLE_FORCE_COLOR="true"
+export ANSIBLE_HOST_KEY_CHECKING="False"
+export ANSIBLE_KEEP_REMOTE_FILES=1
+
 echo "==== Begin Pre-Requis tasks on environment ${environment} ===="
 echo "Name of the current directory"
 pwd
