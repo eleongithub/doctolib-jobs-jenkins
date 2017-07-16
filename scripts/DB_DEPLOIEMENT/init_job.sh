@@ -12,3 +12,6 @@ echo "Repository choisi : ${repository}"
 echo "Version de l'application à déployer : ${dbVersion}"
 echo "Instalation complète : ${installComplete}"
 echo "Instalation du firewall : ${firewall}"
+
+echo "Current user"
+whoami
