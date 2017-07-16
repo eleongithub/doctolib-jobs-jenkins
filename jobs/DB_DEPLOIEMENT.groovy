@@ -14,8 +14,14 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         choiceParam('environment', ['Dev(default)', 'Recette', 'Intmoa'], 'Environnement cible de déploiement')
         choiceParam('repository', ['Snapshots(default)', 'Releases'], 'Repository des livrables')
         stringParam('dbVersion', '', 'Version à déployer.')
-        booleanParam('installComplete', false, 'Installation complete des roles du playbook')
+        booleanParam('installComplete', false, 'Installation complete des rôles du playbook')
         booleanParam('firewall', false, 'Installation du firewall')
+        booleanParam('jdk', false, 'Installation du JDK 1.8')
+        booleanParam('postgres', false, 'Installation du serveur PostgreSQL')
+        booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données')
+        booleanParam('springboot', false, 'Installation de springboot')
+        nonStoredPasswordParam('vaultPassword', 'Password to decrypt vault variables')
+        booleanParam('debug', true, 'Exécuter le job en mode Debug')
     }
 
     steps {
