@@ -6,6 +6,9 @@ def job = freeStyleJob('DB_PREREQUIS_DEPLOIEMENT'){
     // Description du job.
     description('Ce job permet de créer les pré-requis avant de  déployer une version de l\'application sur un environnement (Dev, qualif, Prod)')
 
+    environmentVariables {
+        env('vaultPassword', 'test')
+    }
 
 //    Définir les paramètres du Job
     parameters {
