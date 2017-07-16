@@ -11,8 +11,8 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
 
 //    Définir les paramètres du Job
     parameters {
-        choiceParam('environment', ['Dev(default)', 'Recette', 'Intmoa'], 'Environnement cible de déploiement')
-        choiceParam('repository', ['Snapshots(default)', 'Releases'], 'Repository des livrables')
+        choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement')
+        choiceParam('repository', ['snapshots', 'releases'], 'Repository des livrables')
         stringParam('dbVersion', '', 'Version à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook')
         booleanParam('firewall', false, 'Installation du firewall')
