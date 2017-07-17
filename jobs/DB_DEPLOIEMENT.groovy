@@ -15,7 +15,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         choiceParam('repository', ['snapshots', 'releases'], 'Repository des livrables')
         stringParam('dbVersion', '', 'Version à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook')
-        booleanParam('firewall', false, 'Installation du firewall')
+        booleanParam('iptables', false, 'Installation du firewall iptables')
         booleanParam('jdk', false, 'Installation du JDK 1.8')
         booleanParam('postgres', false, 'Installation du serveur PostgreSQL')
         booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données')
