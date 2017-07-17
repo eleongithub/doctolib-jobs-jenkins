@@ -11,17 +11,17 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
 
 //    Définir les paramètres du Job
     parameters {
-        choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement')
-        choiceParam('repository', ['snapshots', 'releases'], 'Repository des livrables')
-        stringParam('dbVersion', '', 'Version à déployer.')
-        booleanParam('installComplete', false, 'Installation complete des rôles du playbook')
-        booleanParam('iptables', false, 'Installation du firewall iptables')
-        booleanParam('jdk', false, 'Installation du JDK 1.8')
-        booleanParam('postgres', false, 'Installation du serveur PostgreSQL')
-        booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données')
-        booleanParam('springboot', false, 'Installation de springboot')
-        nonStoredPasswordParam('vaultPassword', 'Password to decrypt vault variables')
-        booleanParam('debug', true, 'Exécuter le job en mode Debug')
+        booleanParam('debug', true, 'Exécuter le job en mode Debug.')
+        choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
+        choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
+        stringParam('dbVersion', '', 'Version de l\'application à déployer.')
+        booleanParam('installComplete', false, 'Installation complete des rôles du playbook.')
+        booleanParam('iptables', false, 'Installation du firewall iptables.')
+        booleanParam('jdk', false, 'Installation du JDK 1.8.')
+        booleanParam('postgres', false, 'Installation du serveur PostgreSQL.')
+        booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données.')
+        booleanParam('springboot', false, 'Installation de springboot.')
+        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
     }
 
     steps {
