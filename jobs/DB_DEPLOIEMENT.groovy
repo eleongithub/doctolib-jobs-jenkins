@@ -15,6 +15,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         booleanParam('debug', true, 'Exécuter le job en mode Debug.')
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
         choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
+        stringParam('branch', 'master', 'Branche Ansible à utiliser pour effectuer le deploiement')
         stringParam('dbVersion', '', 'Version de l\'application à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook.')
         booleanParam('iptables', false, 'Installation du firewall iptables.')
@@ -23,6 +24,19 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données.')
         booleanParam('springboot', false, 'Installation de springboot.')
 //        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
+    }
+
+    //    Récupérer sur Git la branche à utiliser pour faire le deploiement
+    scm {
+        git {
+            remote {
+                url('https://github.com/eleongithub/doctolib-ansible.git')
+            }
+            branch('${branch}')
+            extensions{
+                localBranch('${branch}')
+            }
+        }
     }
 
     steps {
