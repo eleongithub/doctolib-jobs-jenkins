@@ -5,38 +5,24 @@ echo "####################################"
 echo "=========== Debut Deploiement======="
 echo "####################################"
 
-echo -n "Current directory";pwd
-echo -n "Current user"; whoami
+echo -n "Current directory : ";pwd
+echo -n "Current user : "; whoami
 
 export ANSIBLE_FORCE_COLOR="true"
 export ANSIBLE_HOST_KEY_CHECKING="False"
 export ANSIBLE_KEEP_REMOTE_FILES=1
-
-echo "Mode debug : ${debug}"
-echo "environnement cible : ${environment}"
-echo "Repository choisi : ${repository}"
-echo "Version de l'application à déployer : ${dbVersion}"
-echo "Instalation complète : ${installComplete}"
-echo "Instalation du firewall avec iptables : ${iptables}"
-echo "Instalation du jdk : ${jdk}"
-echo "Instalation postgres : ${postgres}"
-echo "Instalation postgres_instance : ${postgres_instance}"
-echo "Instalation springboot : ${springboot}"
-echo "Mot de passe vault : ${vaultPassword}"
-
-
 
 debug_option=""
 limit=""
 tags="-t always"
 
 if [ "${debug}" == "true" ]; then
- debug_option="-vvvv"
+    debug_option="-vvvv"
 fi
 
 
 if [ "${iptables}" == "true" ]; then
-     tags="${tags},iptables"
+    tags="${tags},iptables"
 fi
 
 #if [ "${jdk}" == "true" ]; then
