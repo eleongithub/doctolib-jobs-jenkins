@@ -8,6 +8,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
     // Description du job.
     description('Ce job permet de déployer une version (Snapshot ou Release) de l\'application sur un environnement cible (Dev, Recette, Pré-production, Production)')
 
+    environmentVariables(vaultPassword: 'test')
 
 //    Définir les paramètres du Job
     parameters {
@@ -21,7 +22,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         booleanParam('postgres', false, 'Installation du serveur PostgreSQL.')
         booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données.')
         booleanParam('springboot', false, 'Installation de springboot.')
-        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
+//        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
     }
 
     steps {
