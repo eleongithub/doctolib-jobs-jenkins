@@ -26,7 +26,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
     }
 
     steps {
-        shell(readFileFromWorkspace('scripts/DB_DEPLOIEMENT/init_job.sh'))
+        shell(readFileFromWorkspace('scripts/DB_DEPLOIEMENT/db_deploy.sh'))
     }
 //    TODO Envoyer un mail de notification à la fin du release
 }
