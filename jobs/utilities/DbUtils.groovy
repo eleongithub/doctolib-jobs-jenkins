@@ -19,4 +19,14 @@ class DbUtils {
             }
         }
     }
+
+    static defaultPublishers(job) {
+        job.with {
+            publishers {
+                wsCleanup()
+            }
+        }
+    }
+
+
 }

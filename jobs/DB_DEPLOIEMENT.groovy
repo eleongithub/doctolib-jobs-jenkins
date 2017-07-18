@@ -46,3 +46,4 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
 }
 DbUtils.defaultWrappersPolicy(job)
 DbUtils.defaultLogRotatorPolicy(job)
+DbUtils.defaultPublishers(job)
