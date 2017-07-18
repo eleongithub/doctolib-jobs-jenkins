@@ -42,13 +42,13 @@ $IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp -m multiport --sp
 
 # Add a rule for each allow input port
 {% for allow_input_port in firewall_input_allowed_ports %}
-$IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_input_port.protocol }} --dport {{ allow_input_port.port }} -j ACCEPT -m comment --comment "{{ allow_input_port.comment }}"
+$IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_input_port.protocol }} -m conntrack --ctstate NEW,ESTABLISHED --dport {{ allow_input_port.port }} -j ACCEPT -m comment --comment "{{ allow_input_port.comment }}"
 {% endfor %}
 
 
 # Add a rule for each allow output port
 {% for allow_output_port in firewall_output_allowed_ports %}
-$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p {{ allow_output_port.protocol }} --sport {{ allow_output_port.port }} -j ACCEPT -m comment --comment "{{ allow_output_port.comment }}"
+$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p {{ allow_output_port.protocol }} -m conntrack --ctstate ESTABLISHED --sport {{ allow_output_port.port }} -j ACCEPT -m comment --comment "{{ allow_output_port.comment }}"
 {% endfor %}
 
 
