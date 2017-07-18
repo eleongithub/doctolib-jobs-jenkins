@@ -8,6 +8,7 @@
   get_url:
     url: "{{ jdk_32_url }}"
     dest: "/tmp/{{ jdk_tarball_name_32 }}"
+    validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Decompress jdk 32 bits Archive
@@ -26,6 +27,7 @@
   get_url:
     url: "{{ jdk_64_url }}"
     dest: "/tmp/{{ jdk_tarball_name_64 }}"
+    validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Decompress jdk 64 bits Archive
