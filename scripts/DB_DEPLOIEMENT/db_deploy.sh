@@ -7,11 +7,9 @@ echo "=========== Debut Deploiement======="
 echo "####################################"
 
 echo -n "Current directory : ";pwd
-echo -n "List file in the current directory : ";ls -lrt
 echo -n "Current user : "; whoami
 cd ansible
-echo -n "Current directory : ";pwd
-echo -n "List file in the current directory : ";ls -lrt
+
 
 export ANSIBLE_FORCE_COLOR="true"
 export ANSIBLE_HOST_KEY_CHECKING="False"
@@ -61,7 +59,7 @@ echo "---------------------"
 VAULT_PASSWORD="test"
 echo $VAULT_PASSWORD > vault_pass.txt
 
-INVENTORY_HOST_FILE=ansible/inventory/${environment}/hosts.yml
+INVENTORY_HOST_FILE=inventory/${environment}/hosts.yml
 ansible-playbook --vault-password-file vault_pass.txt -i $INVENTORY_HOST_FILE playbook.yml ${debug_option} ${tags} -e "@extra_vars.yml"
 rm -f extra_vars.yml vault_pass.txt
 
