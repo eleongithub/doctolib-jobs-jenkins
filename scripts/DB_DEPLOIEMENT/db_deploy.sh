@@ -1,3 +1,4 @@
+#!/bin/bash
 # On utilise set +x pour ne pas afficher les commandes sur la console
 set +x
 set -e
@@ -25,28 +26,27 @@ if [ "${iptables}" == "true" ]; then
     tags="${tags},iptables"
 fi
 
-#if [ "${jdk}" == "true" ]; then
-#     tags="${tags},jdk"
-#fi
-#
-#if [ "${postgres}" == "true" ]; then
-#     tags="${tags},postgres"
-#fi
-#
-#if [ "${postgres_instance}" == "true" ]; then
-#     tags="${tags},postgres_instance"
-#fi
-#
-#if [ "${springboot}" == "true" ]; then
-#     tags="${tags},springboot"
-#fi
-#
-#if [ "${installComplete}" == "true" ]; then
-#  tags=""
-#fi
+if [ "${jdk}" == "true" ]; then
+     tags="${tags},jdk"
+fi
+
+if [ "${postgres}" == "true" ]; then
+     tags="${tags},postgres"
+fi
+
+if [ "${postgres_instance}" == "true" ]; then
+     tags="${tags},postgres_instance"
+fi
+
+if [ "${springboot}" == "true" ]; then
+     tags="${tags},springboot"
+fi
+
+if [ "${installComplete}" == "true" ]; then
+  tags=""
+fi
 
 echo "---" > extra_vars.yml
-echo "env: ${environment}" >>extra_vars.yml
 #echo "appversion: ${appversion}" >>extra_vars.yml
 
 echo "-- Ansible version --"
@@ -58,7 +58,7 @@ VAULT_PASSWORD="test"
 echo $VAULT_PASSWORD > vault_pass.txt
 
 INVENTORY_HOST_FILE=inventory/${environment}/hosts.yml
-ansible-playbook --vault-password-file vault_pass.txt -i $INVENTORY_HOST_FILE playbook.yml ${debug_option} ${tags} -e "env=${environment}"
+ansible-playbook --vault-password-file vault_pass.txt -i $INVENTORY_HOST_FILE playbook.yml ${debug_option} ${tags} -e "env=${environment}" -e "@extra_vars.yml"
 rm -f extra_vars.yml vault_pass.txt
 
 echo "=========== Fin Deploiement======="
