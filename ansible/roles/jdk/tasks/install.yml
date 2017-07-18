@@ -14,7 +14,7 @@
 - name: Decompress jdk 32 bits Archive
   unarchive:
     src: "/opt/{{ jdk_tarball_name_32 }}"
-    dest: "/opt/"
+    dest: "/opt/jdk_versions/jdk1.8.0_141"
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Delete jdk 32 bits Archive
@@ -33,7 +33,7 @@
 - name: Decompress jdk 64 bits Archive
   unarchive:
     src: "/opt/{{ jdk_tarball_name_64 }}"
-    dest: "/opt/"
+    dest: "/opt/jdk_versions/jdk1.8.0_141"
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Delete jdk 64 bits Archive
