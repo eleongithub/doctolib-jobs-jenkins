@@ -9,6 +9,7 @@
     src: "{{ jdk_32_url }}"
     dest: "/opt/"
     remote_src: True
+    validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Download and decompress jdk 64 bits archive
@@ -16,6 +17,7 @@
     src: "{{ jdk_64_url }}"
     dest: "/opt/"
     remote_src: True
+    validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Add/Update environments variables
