@@ -1,0 +1,46 @@
+---
+# defaults file for firewall
+firewall_network_interface: "eth0"
+firewall_script_files:
+ - { src: "firewall-start-rules.j2", dest: "/etc/firewall-start-rules", mode: "0744" }
+ - { src: "firewall-stop-rules.j2", dest: "/etc/firewall-stop-rules", mode: "0744" }
+ - { src: "firewall.j2", dest: "/etc/init.d/firewall", mode: "0755" }
+
+firewall_input_allowed_ports:
+ - { port: "22", protocol: "tcp", comment: "TCP - SSH Input trafic" }
+ - { port: "25", protocol: "tcp", comment: "TCP - SMTP Input trafic" }
+ - { port: "80", protocol: "tcp", comment: "TCP - HTTP Input trafic" }
+ - { port: "443", protocol: "tcp", comment: "TCP - HTTPS Input trafic" }
+ - { port: "53", protocol: "tcp", comment: "TCP - DNS Input trafic" }
+ - { port: "53", protocol: "udp", comment: "UDP - DNS Input trafic" }
+
+firewall_output_allowed_ports:
+ - { port: "22", protocol: "tcp", comment: "TCP - SSH Output trafic" }
+ - { port: "25", protocol: "tcp", comment: "TCP - SMTP Input trafic" }
+ - { port: "80", protocol: "tcp", comment: "TCP - HTTP Output trafic" }
+ - { port: "443", protocol: "tcp", comment: "TCP - HTTPS Output trafic" }
+ - { port: "53", protocol: "tcp", comment: "TCP - DNS Output trafic" }
+ - { port: "53", protocol: "udp", comment: "UDP - DNS Output trafic" }
+
+firewall_enabled_logs_input_trafic: True
+firewall_enabled_logs_output_trafic: True
+firewall_goss_enabled: False
+
+# Common port:
+#   21 - ftp
+#   22: SSH
+#   23 - telnet
+#   25: SMTP
+#   53: DNS
+#   80: HTTP
+#   110 - pop3
+#   123: NTP
+#   143 - imap
+#   443: HTTPS
+#   4949: Munin
+#   6082: Varnish admin
+#   8080: HTTP alternate (Tomcat)
+#   8983: Tomcat HTTP
+#   8443: Tomcat HTTPS
+#   9000: SonarQube
+# for more informations about ports, look at  http://guide.ovh.com/firewall

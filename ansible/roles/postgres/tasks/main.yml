@@ -1,0 +1,32 @@
+---
+# tasks file for postgres
+- name: Installing PostgreSQL Server
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ postgres_server_pkg }}"
+    - "{{ postgres_client_pkg }}"
+
+- name: Deploy configurations files
+  template:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+  with_items:
+    - "{{ postgres_conf_files }}"
+
+- name: Add Iptables rule
+  include: iptables.yml
+  when: postgres_iptables_enabled
+
+- name: Restart PostgreSQL
+  command: echo "Restart PostgreSQL"
+  notify:
+    - Restart PostgreSQL
+
+- meta: flush_handlers
+  when: postgres_goss_enabled
+
+- name: Test with goss
+  include: goss.yml
+  when: postgres_goss_enabled

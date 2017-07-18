@@ -1,0 +1,6 @@
+---
+# defaults file for sudo_users
+user_name: deploy_user
+user_password: deploy_user
+user_comment: "Technical user for deployment"
+user_public_ssh_key:

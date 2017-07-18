@@ -1,0 +1,61 @@
+---
+# tasks file for sudo_users
+
+- name: Create user on servers machine 
+  user:
+    name: "{{ user_name }}"
+    comment: "{{ user_comment }}"
+    shell: /bin/bash
+    password: "{{ user_password }}"
+    generate_ssh_key: no
+
+- name: Init ssh directory 
+  file:
+    path: "/home/{{ user_name }}/.ssh"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: 0700
+    state: directory
+    recurse: yes
+
+- name: Export public keys to servers
+  lineinfile:
+    dest: "/home/{{ user_name }}/.ssh/authorized_keys"
+    create: yes
+    state: present
+    mode: 0600
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    line: "{{ user_public_ssh_key }}"
+
+- name: Install sudo package
+  apt:
+    pkg: sudo
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Create sudoers.d directory
+  file:
+    path: /etc/sudoers.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Set includedir in sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    line: "#includedir /etc/sudoers.d"
+    state: present
+    validate: "/usr/sbin/visudo -cf %s"
+
+- name: Create sudoers
+  lineinfile:
+    dest: "/etc/sudoers.d/sudoers.d.{{ user_name }}"
+    create: yes
+    state: present
+    mode: 0440
+    owner: root
+    group: root
+    line: '{{ user_name }} ALL=(ALL:ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'

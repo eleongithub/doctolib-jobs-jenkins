@@ -15,7 +15,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         booleanParam('debug', true, 'Exécuter le job en mode Debug.')
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
         choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
-        stringParam('branch', 'master', 'Branche Ansible à utiliser pour effectuer le deploiement')
+        stringParam('branch', 'master', 'Branche à utiliser pour effectuer le deploiement')
         stringParam('dbVersion', '', 'Version de l\'application à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook.')
         booleanParam('firewall', false, 'Installation du firewall iptables.')
@@ -30,7 +30,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
     scm {
         git {
             remote {
-                url('https://github.com/eleongithub/doctolib-ansible.git')
+                url('https://github.com/eleongithub/doctolib-jobs-jenkins.git')
             }
             branch('${branch}')
             extensions{

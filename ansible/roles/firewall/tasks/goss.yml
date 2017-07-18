@@ -1,0 +1,19 @@
+---
+- name: Copy goss tests file
+  template:
+      src: goss.j2
+      dest: /etc/goss-firewall.yml
+      owner: root
+      group: root
+      mode: 0640
+
+#TODO
+#- name: Launch goss test
+#  goss:
+#    path: /etc/goss-firewall.yml
+#    format: json
+
+- name: Remove goss test
+  file:
+    path: /etc/goss-firewall.yml
+    state: absent

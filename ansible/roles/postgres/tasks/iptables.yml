@@ -1,0 +1,27 @@
+---
+
+# Postgres behind iptables firewall : Look at https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
+
+- name: Add Iptables Input trafic rule for Postgres
+  iptables:
+    action: insert
+    chain: INPUT
+    protocol: tcp
+    ctstate: NEW,ESTABLISHED
+    in_interface: "{{ postgres_network_interface }}"
+    destination_port: "{{ postgres_port }}"
+    jump: ACCEPT
+    state: present
+    comment: "TCP - Postgres Server Input trafic"
+
+- name: Add Iptables Output trafic rule for Postgres
+  iptables:
+    action: insert
+    chain: OUTPUT
+    protocol: tcp
+    ctstate: NEW,ESTABLISHED
+    out_interface: "{{ postgres_network_interface }}"
+    source_port: "{{ postgres_port }}"
+    jump: ACCEPT
+    state: present
+    comment: "TCP - Postgres Server Output trafic"

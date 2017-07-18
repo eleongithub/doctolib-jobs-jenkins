@@ -1,0 +1,21 @@
+---
+
+package:
+  {{ postgres_server_pkg }}:
+    # required attributes
+    installed: true
+
+package:
+  {{ postgres_client_pkg }}:
+    # required attributes
+    installed: true
+    
+service:
+  postgresql:
+    # required attributes
+    enabled: true
+    running: true
+
+port:
+  tcp:{{ postgres_port }}:
+    listening: true
