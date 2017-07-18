@@ -4,40 +4,18 @@
   shell: getconf LONG_BIT || echo "Unknown architecture"
   register: os_architecture
 
-- name: Download jdk 32 bits Archive
-  get_url:
-    url: "{{ jdk_32_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_32 }}"
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
-
-- name: Decompress jdk 32 bits Archive
+- name: Download and decompress jdk 32 bits archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_32 }}"
+    src: "{{ jdk_32_url }}"
     dest: "/opt/"
+    remote_src: True
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
-- name: Delete jdk 32 bits Archive
-  file:
-    path: "/tmp/{{ jdk_tarball_name_32 }}"
-    state: absent
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
-
-- name: Download jdk 64 bits Archive
-  get_url:
-    url: "{{ jdk_64_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_64 }}"
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
-
-- name: Decompress jdk 64 bits Archive
+- name: Download and decompress jdk 64 bits archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_64 }}"
+    src: "{{ jdk_64_url }}"
     dest: "/opt/"
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
-
-- name: Delete jdk 64 bits Archive
-  file:
-    path: "/tmp/{{ jdk_tarball_name_64 }}"
-    state: absent
+    remote_src: True
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Add/Update environments variables

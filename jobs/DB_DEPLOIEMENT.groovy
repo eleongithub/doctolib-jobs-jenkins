@@ -46,4 +46,6 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
 }
 DbUtils.defaultWrappersPolicy(job)
 DbUtils.defaultLogRotatorPolicy(job)
-DbUtils.defaultPublishers(job)
+
+// À activer avec parcimonie. Il arrive parfois qu'on ait besoin de regarder le fichiers du workspace pour comprendre une erreur; un echec.
+// DbUtils.defaultPublishers(job)
