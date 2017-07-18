@@ -47,7 +47,7 @@ if [ "${installComplete}" == "true" ]; then
 fi
 
 echo "---" > extra_vars.yml
-#echo "appversion: ${appversion}" >>extra_vars.yml
+echo "env: ${environment}" >>extra_vars.yml
 
 echo "-- Ansible version --"
 ansible --version
@@ -58,7 +58,7 @@ VAULT_PASSWORD="test"
 echo $VAULT_PASSWORD > vault_pass.txt
 
 INVENTORY_HOST_FILE=inventory/${environment}/hosts.yml
-ansible-playbook --vault-password-file vault_pass.txt -i $INVENTORY_HOST_FILE playbook.yml ${debug_option} ${tags} -e "env=${environment}" -e "@extra_vars.yml"
+ansible-playbook --vault-password-file vault_pass.txt -i $INVENTORY_HOST_FILE playbook.yml ${debug_option} ${tags} -e "@extra_vars.yml"
 rm -f extra_vars.yml vault_pass.txt
 
 echo "=========== Fin Deploiement======="
