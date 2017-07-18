@@ -7,38 +7,38 @@
 - name: Download jdk 32 bits Archive
   get_url:
     url: "{{ jdk_32_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_32 }}"
+    dest: "/opt/{{ jdk_tarball_name_32 }}"
     validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Decompress jdk 32 bits Archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_32 }}"
+    src: "/opt/{{ jdk_tarball_name_32 }}"
     dest: "/opt/"
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Delete jdk 32 bits Archive
   file:
-    path: "/tmp/{{ jdk_tarball_name_32 }}"
+    path: "/opt/{{ jdk_tarball_name_32 }}"
     state: absent
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Download jdk 64 bits Archive
   get_url:
     url: "{{ jdk_64_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_64 }}"
+    dest: "/opt/{{ jdk_tarball_name_64 }}"
     validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Decompress jdk 64 bits Archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_64 }}"
+    src: "/opt/{{ jdk_tarball_name_64 }}"
     dest: "/opt/"
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Delete jdk 64 bits Archive
   file:
-    path: "/tmp/{{ jdk_tarball_name_64 }}"
+    path: "/opt/{{ jdk_tarball_name_64 }}"
     state: absent
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
