@@ -20,6 +20,7 @@ class DbUtils {
         }
     }
 
+//    Delete workspace at the end of the job (Success Unstable Failure Not-Built Aborted... Any case, the workspace is cleaned)
     static defaultPublishers(job) {
         job.with {
             publishers {
