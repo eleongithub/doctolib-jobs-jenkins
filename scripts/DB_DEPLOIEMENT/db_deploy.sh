@@ -22,8 +22,8 @@ if [ "${debug}" == "true" ]; then
 fi
 
 
-if [ "${iptables}" == "true" ]; then
-    tags="${tags},iptables"
+if [ "${firewall}" == "true" ]; then
+    tags="${tags},firewall"
 fi
 
 if [ "${jdk}" == "true" ]; then

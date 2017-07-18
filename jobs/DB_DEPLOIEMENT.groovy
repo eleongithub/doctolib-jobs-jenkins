@@ -18,7 +18,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         stringParam('branch', 'master', 'Branche Ansible à utiliser pour effectuer le deploiement')
         stringParam('dbVersion', '', 'Version de l\'application à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook.')
-        booleanParam('iptables', false, 'Installation du firewall iptables.')
+        booleanParam('firewall', false, 'Installation du firewall iptables.')
         booleanParam('jdk', false, 'Installation du JDK 1.8.')
         booleanParam('postgres', false, 'Installation du serveur PostgreSQL.')
         booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données.')
