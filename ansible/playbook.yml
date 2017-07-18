@@ -1,0 +1,33 @@
+---
+
+###################
+# Security
+###################
+- hosts: all
+  vars_files:
+   - "password/password-{{env}}.yml"
+  become: yes
+  roles:
+    - { role: firewall, tags: ['firewall'] }
+
+# ###################
+# # Data Base
+# ###################
+- hosts: database
+  vars_files:
+   - "password/password-{{env}}.yml"
+  become: yes
+  roles:
+    - { role: postgres, tags: ['postgres'] }
+    - { role: postgres_instance, tags: ['postgres_instance'] }
+
+# ###################
+# # Install Spring boot
+# ###################
+- hosts: springboot
+  vars_files:
+   - "password/password-{{env}}.yml"
+  become: yes
+  roles:
+     - { role: jdk, tags: ['jdk'] }
+     - { role: springboot, tags: ['springboot'] }
