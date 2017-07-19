@@ -8,10 +8,17 @@
     - "{{ postgres_server_pkg }}"
     - "{{ postgres_client_pkg }}"
 
+- name: Create addtionnal configuration directory
+  file:
+    path: "{{ postgres_additionnal_conf_dir }}"
+    state: directory
+    owner: postgres
+    group: postgres
+
 - name: Deploy configurations files
   template:
-    src: "{{item.src}}"
-    dest: "{{item.dest}}"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   with_items:
     - "{{ postgres_conf_files }}"
 
