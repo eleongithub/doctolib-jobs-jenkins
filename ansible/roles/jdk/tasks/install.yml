@@ -28,7 +28,7 @@
 
 - name: Decompress jdk 32 bits Archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_32 }}"
+    src: /tmp/{{ jdk_tarball_name_32 }}
     dest: "{{ jdk_versions }}/"
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
