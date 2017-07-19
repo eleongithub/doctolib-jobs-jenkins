@@ -40,7 +40,7 @@
     dest: "{{ item.dest }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
-    mod: "0750"
+    mode: "0750"
   with_items: "{{ springboot_apps_conf_files }}"
 
 - name: Download Spring Boot application jar
