@@ -50,6 +50,7 @@ fi
 
 echo "---" > extra_vars.yml
 echo "env: ${environment}" >>extra_vars.yml
+echo "springboot_apps_version: ${dbVersion}" >>extra_vars.yml
 
 echo "-- Ansible version --"
 ansible --version

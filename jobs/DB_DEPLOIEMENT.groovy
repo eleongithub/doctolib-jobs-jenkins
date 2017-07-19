@@ -16,7 +16,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
         choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
         stringParam('branch', 'master', 'Branche à utiliser pour effectuer le deploiement')
-        stringParam('dbVersion', '', 'Version de l\'application à déployer.')
+        stringParam('dbVersion', '1.0.0-SNAPSHOT', 'Version de l\'application à déployer.')
         booleanParam('installComplete', false, 'Installation complete des rôles du playbook.')
         booleanParam('firewall', false, 'Installation du firewall iptables.')
         booleanParam('jdk', false, 'Installation du JDK 1.8.')
