@@ -46,7 +46,7 @@
 - name: Download Spring Boot application jar
   get_url:
     url: "{{ springboot_nexus_url }}?r={{ springboot_apps_repository }}&g={{ springboot_apps_groupid }}&a={{ springboot_apps_artifactid }}&v={{ springboot_apps_version }}&p={{ springboot_apps_package }}"
-    dest: "{{ springboot_main_directory }}/{{ springboot_jar_name }}"
+    dest: "{{ springboot_main_directory }}/{{ springboot_apps_jar_name }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
     mode: 0755

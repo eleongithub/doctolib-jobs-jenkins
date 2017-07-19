@@ -12,7 +12,7 @@ springboot_apps_groupid: "com.syscom"
 springboot_apps_artifactid: "db-restfull"
 springboot_apps_version: "LATEST"
 springboot_apps_package: "jar"
-springboot_jar_name: "db-restfull.jar"
+springboot_apps_jar_name: "db-restfull.jar"
 springboot_apps_conf_files:
  - { src: "application.properties.j2", dest: "{{ springboot_conf_directory }}/application.properties" }
 springboot_port: 8080
