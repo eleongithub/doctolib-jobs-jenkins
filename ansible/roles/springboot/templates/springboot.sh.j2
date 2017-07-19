@@ -10,10 +10,10 @@
 ### END INIT INFO
 
 # User
-SPRING_BOOT_USER={{ springboot_user }}
+SPRING_BOOT_USER="{{ springboot_user }}"
 
 # Start command
-START_COMMAND="java -Dconf.file={{ springboot_conf_directory }} -Xbootclasspath/p:{{ springboot_conf_directory }} -Xmx512m -Xms256m -jar {{ springboot_main_directory }}/{{ springboot_apps_jar_name }}"
+START_COMMAND="java -Dconf.file={{ springboot_conf_directory }} -Xbootclasspath/p:{{ springboot_conf_directory }} -Xmx512m -Xms256m -jar {{ springboot_jar_directory }}/{{ springboot_apps_jar_name }}"
 
 # Log file for start/stop
 SPRING_BOOT_LOG_START_STOP="{{ springboot_logs_directory }}/startSpringBoot.log"
@@ -36,7 +36,8 @@ start() {
   else
     # Start Springboot
     echo -e "\e[00;32mStarting Spring Boot\e[00m"
-    /bin/su $SPRING_BOOT_USER $START_COMMAND > $SPRING_BOOT_LOG_START_STOP 2>&1 &
+    $START_COMMAND &
+#    /bin/su $SPRING_BOOT_USER $START_COMMAND > $SPRING_BOOT_LOG_START_STOP 2>&1 &
   fi
   return 0
 }
