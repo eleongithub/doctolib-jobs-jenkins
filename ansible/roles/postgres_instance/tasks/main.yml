@@ -30,19 +30,20 @@
     state: present
   with_items: "{{ postgres_instance_dbs }}"
 
-- name: Authorize user to connect its only database on local and on the network
-  blockinfile:
-    dest: "{{ postgres_instance_pg_hba_conf_file }}"
-    insertafter: EOF
-    block: |
-      # "local" - Authorize user to connect to database on localhost
-      local   {{ item.db_user }}      {{ item.db_name }}        md5
-      # IPv4 local connections:
-      host   {{ item.db_user }}      {{ item.db_name }}            127.0.0.1/32            md5
-      # IPv6 local connections:
-      host    {{ item.db_user }}      {{ item.db_name }}           ::1/128                 md5
-    state: present
-  with_items: "{{ postgres_instance_dbs }}"
+# TODO Partie de code à revoir..
+#- name: Authorize user to connect its only database on local and on the network
+#  blockinfile:
+#    dest: "{{ postgres_instance_pg_hba_conf_file }}"
+#    insertafter: EOF
+#    block: |
+#      # "local" - Authorize user to connect to database on localhost
+#      local   {{ item.db_user }}      {{ item.db_name }}        md5
+#      # IPv4 local connections:
+#      host   {{ item.db_user }}      {{ item.db_name }}            127.0.0.1/32            md5
+#      # IPv6 local connections:
+#      host    {{ item.db_user }}      {{ item.db_name }}           ::1/128                 md5
+#    state: present
+#  with_items: "{{ postgres_instance_dbs }}"
 
 - name: Restart PostgreSQL
   command: echo "Restart PostgreSQL"
