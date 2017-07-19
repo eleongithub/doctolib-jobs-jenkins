@@ -39,6 +39,10 @@ $IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p icmp -j ACC
 $IPTABLES -A INPUT -i {{ firewall_network_interface }} -p tcp -m multiport --dports 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp -m multiport --dports 80,443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 
+# Allow open SSH Input & Output connections to receive input/output trafic.
+$IPTABLES -A INPUT -i {{ firewall_network_interface }} -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp --dport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
 
 # Add a rule for each allow input port
 {% for allow_input_port in firewall_input_allowed_ports %}

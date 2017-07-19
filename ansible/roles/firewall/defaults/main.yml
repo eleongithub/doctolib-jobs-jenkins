@@ -7,7 +7,7 @@ firewall_script_files:
  - { src: "firewall.j2", dest: "/etc/init.d/firewall", mode: "0755" }
 
 firewall_input_allowed_ports:
- - { port: "22", protocol: "tcp", comment: "TCP - SSH Input trafic" }
+# - { port: "22", protocol: "tcp", comment: "TCP - SSH Input trafic" }
  - { port: "25", protocol: "tcp", comment: "TCP - SMTP Input trafic" }
  - { port: "80", protocol: "tcp", comment: "TCP - HTTP Input trafic" }
  - { port: "443", protocol: "tcp", comment: "TCP - HTTPS Input trafic" }
@@ -15,7 +15,7 @@ firewall_input_allowed_ports:
  - { port: "53", protocol: "udp", comment: "UDP - DNS Input trafic" }
 
 firewall_output_allowed_ports:
- - { port: "22", protocol: "tcp", comment: "TCP - SSH Output trafic" }
+# - { port: "22", protocol: "tcp", comment: "TCP - SSH Output trafic" }
  - { port: "25", protocol: "tcp", comment: "TCP - SMTP Input trafic" }
  - { port: "80", protocol: "tcp", comment: "TCP - HTTP Output trafic" }
  - { port: "443", protocol: "tcp", comment: "TCP - HTTPS Output trafic" }
