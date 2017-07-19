@@ -49,6 +49,7 @@
     dest: "{{ springboot_jar_directory }}/{{ springboot_apps_jar_name }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
+    force: yes
     mode: 0755
 
 - name: Copy Spring Boot script shell
