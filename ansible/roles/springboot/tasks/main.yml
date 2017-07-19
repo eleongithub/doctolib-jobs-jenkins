@@ -57,7 +57,7 @@
     dest: /etc/init.d/springboot
     owner: root
     group: root
-    mod: 0755
+    mode: 0755
 
 - name: Add Iptables rule
   include: iptables.yml
