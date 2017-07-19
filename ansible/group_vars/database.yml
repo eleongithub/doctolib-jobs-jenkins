@@ -1,2 +1,4 @@
 ---
 postgres_iptables_enabled: True
+db_user: "{{ vault_db_user }}"
+db_password: "{{ vault_db_password }}"

@@ -1,31 +1,42 @@
-Role Name
+postgres_instance
 =========
 
-A brief description of the role goes here.
+postgres_instance adds users, databases and schemas to PostgreSQL.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Name	        | Default Value	| Description|
+| ------------- |:-------------:| ----------:|
+|postgres_instance_version|9.4| PostgreSQL version|
+|postgres_instance_conf_dir|/etc/postgresql/9.4/main|Directory of configuration file|
+|postgres_instance_pg_hba_conf_file|/etc/postgresql/9.4/main/pg_hba.conf|Authorization/Connexion config file|
+|dbs|-|List of users, databases and schemas.|
+|vault_db_apps_password|-|Database password stored by ansible-vault (Look at password-{{env}}.yml).|
+|vault_db_apps1_password|-|Database password stored by ansible-vault (Look at password-{{env}}.yml).|
+
+More informations about variables [here.](https://github.com/eleongithub/ansible/blob/it_1/projects/roles/postgres_instance/defaults/main.yml)
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Install postgres_instance
+```yaml
+- hosts: servers
+  roles:
+    - { role: postgres_instance }
+```
 
 License
 -------
@@ -35,4 +46,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Eric LEGBA.
