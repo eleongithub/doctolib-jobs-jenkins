@@ -25,7 +25,7 @@ Role Variables
 |springboot_apps_version|-|Maven - Spring Boot application version.|
 |springboot_apps_package|jar|Maven - Spring Boot application type package.|
 |springboot_apps_conf_files|-|Spring Boot application - List of configurations file.|
-|springboot_port|9000|Spring Boot application web port.|
+|springboot_http_port|9000|Spring Boot application web port.|
 |springboot_iptables_enabled|False|If `True`, open `spring_boot_port` by iptables.|
 |springboot_network_interface|eth0|Netwaork interface where iptables rule will be apply.|
 

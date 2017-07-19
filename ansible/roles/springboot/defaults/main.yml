@@ -15,6 +15,6 @@ springboot_apps_package: "jar"
 springboot_apps_jar_name: "db-restfull.jar"
 springboot_apps_conf_files:
  - { src: "application.properties.j2", dest: "{{ springboot_conf_directory }}/application.properties" }
-springboot_port: 8080
+springboot_http_port: 8080
 springboot_iptables_enabled: False
 springboot_network_interface: "eth0"
