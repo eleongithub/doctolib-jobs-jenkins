@@ -2,10 +2,12 @@
 # defaults file for jdk
 
 jdk_java_version: 1.8.0_141
-jdk_home: "/opt/jdk{{ jdk_java_version }}"
-jdk_os_32: 32
-jdk_os_64: 64
+jdk_versions: /opt/jdk_versions
+jdk_java_home: /opt/java
+jdk_last_version: "{{ jdk_versions }}/jdk{{ jdk_java_version }}"
 jdk_tarball_name_32: jdk-8u141-linux-i586.tar.gz
 jdk_tarball_name_64: jdk-8u141-linux-x64.tar.gz
+jdk_os_32: 32
+jdk_os_64: 64
 jdk_32_url: "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-i586.tar.gz"
 jdk_64_url: "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz"

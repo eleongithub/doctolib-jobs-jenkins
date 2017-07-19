@@ -1,4 +1,19 @@
 ---
+- name : Check jdk versions directory exists
+  stat:
+    path: "{{ jdk_versions }}"
+  register: jdk_versions_dir_exists
+
+- name: Create jdk version directory
+  file:
+    path: "{{ jdk_versions }}"
+    state: directory
+  when: "not jdk_versions_dir_exists.stat.exists"
+
+- name: Delete java home link
+  file:
+    dest: "{{ jdk_java_home }}"
+    state: absent
 
 - name: Get the machine architecture (32 bits or 64 bits)
   shell: getconf LONG_BIT || echo "Unknown architecture"
@@ -7,40 +22,46 @@
 - name: Download jdk 32 bits Archive
   get_url:
     url: "{{ jdk_32_url }}"
-    dest: "/opt/{{ jdk_tarball_name_32 }}"
+    dest: "/tmp/{{ jdk_tarball_name_32 }}"
     validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Decompress jdk 32 bits Archive
   unarchive:
-    src: "/opt/{{ jdk_tarball_name_32 }}"
-    dest: "/opt/jdk_versions/jdk1.8.0_141"
+    src: "/tmp/{{ jdk_tarball_name_32 }}"
+    dest: "{{ jdk_versions }}/"
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Delete jdk 32 bits Archive
   file:
-    path: "/opt/{{ jdk_tarball_name_32 }}"
+    path: "/tmp/{{ jdk_tarball_name_32 }}"
     state: absent
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
 - name: Download jdk 64 bits Archive
   get_url:
     url: "{{ jdk_64_url }}"
-    dest: "/opt/{{ jdk_tarball_name_64 }}"
+    dest: "/tmp/{{ jdk_tarball_name_64 }}"
     validate_certs: no
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Decompress jdk 64 bits Archive
   unarchive:
-    src: "/opt/{{ jdk_tarball_name_64 }}"
-    dest: "/opt/jdk_versions/jdk1.8.0_141"
+    src: "/tmp/{{ jdk_tarball_name_64 }}"
+    dest: "{{ jdk_versions }}/"
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Delete jdk 64 bits Archive
   file:
-    path: "/opt/{{ jdk_tarball_name_64 }}"
+    path: "/tmp/{{ jdk_tarball_name_64 }}"
     state: absent
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+
+- name: Create link to the jdk directory
+  file:
+    src: "{{ jdk_last_version }}"
+    dest: "{{ jdk_java_home }}"
+    state: link
 
 - name: Add/Update environments variables
   blockinfile:
