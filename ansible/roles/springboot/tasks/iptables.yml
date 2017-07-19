@@ -1,0 +1,25 @@
+---
+
+- name: Add Iptables Input trafic rule for Spring Boot port
+  iptables:
+    action: insert
+    chain: INPUT
+    protocol: tcp
+    ctstate: NEW,ESTABLISHED
+    in_interface: "{{ springboot_network_interface }}"
+    destination_port: "{{ springboot_http_port }}"
+    jump: ACCEPT
+    state: present
+    comment: "TCP - Spring Boot Server HTTP Input trafic"
+
+- name: Add Iptables Output trafic rule for Spring Boot HTTP port
+  iptables:
+    action: insert
+    chain: OUTPUT
+    protocol: tcp
+    ctstate: NEW,ESTABLISHED
+    out_interface: "{{ springboot_network_interface }}"
+    source_port: "{{ springboot_http_port }}"
+    jump: ACCEPT
+    state: present
+    comment: "TCP - Spring Boot HTTP Output trafic"
