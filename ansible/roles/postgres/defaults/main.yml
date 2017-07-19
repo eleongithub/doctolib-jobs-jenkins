@@ -12,6 +12,6 @@ postgres_server_pkg: "postgresql-{{postgres_version}}"
 postgres_client_pkg: "postgresql-client-{{postgres_version}}"
 postgres_conf_files:
   - { src: "postgresql.conf.j2", dest: "{{ postgres_conf_dir }}/postgresql.conf" }
-  - { src: "preload.conf.j2", dest: "{{ postgres_aditionnal_conf_dir }}/preload.conf" }
+  - { src: "preload.conf.j2", dest: "{{ postgres_additionnal_conf_dir }}/preload.conf" }
   - { src: "pg_hba.conf.j2", dest: "{{ postgres_conf_dir }}/pg_hba.conf" }
 
