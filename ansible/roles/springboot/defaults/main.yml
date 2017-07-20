@@ -19,3 +19,11 @@ springboot_apps_conf_files:
 springboot_http_port: 8080
 springboot_iptables_enabled: False
 springboot_network_interface: "eth0"
+springboot_database: POSTGRESQL
+springboot_datasource_patform: postgres
+springboot_show_sql: true
+springboot_database_driverClassName: "org.postgresql.Driver"
+springboot_datasource_url: "jdbc:postgresql://localhost:5432/springboot?currentSchema=springboot"
+# Parametre a définir suivant le cas d'utilisation. Pour ce cas, ces paramètres ont été redefinis via Ansible-Vault.
+springboot_datasource_username:
+springboot_datasource_password:

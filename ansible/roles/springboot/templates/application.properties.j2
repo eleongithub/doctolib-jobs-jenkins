@@ -1,8 +1,8 @@
 server.port={{ springboot_http_port }}
-spring.jpa.database=POSTGRESQL
-spring.datasource.platform=postgres
-spring.jpa.show-sql=true
-spring.database.driverClassName=org.postgresql.Driver
-spring.datasource.url=jdbc:postgresql://localhost:5432/springboot?currentSchema=springboot
-spring.datasource.username=springboot
-spring.datasource.password=springboot
+spring.jpa.database={{ springboot_database }}
+spring.datasource.platform={{ springboot_datasource_patform }}
+spring.jpa.show-sql={{ springboot_show_sql }}
+spring.database.driverClassName={{ springboot_database_driverClassName }}
+spring.datasource.url={{ springboot_datasource_url }}
+spring.datasource.username={{ springboot_datasource_username }}
+spring.datasource.password={{ springboot_datasource_password }}

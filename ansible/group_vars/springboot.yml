@@ -1,3 +1,5 @@
 ---
 
 springboot_iptables_enabled: True
+springboot_datasource_username: "{{ vault_datasource_username }}"
+springboot_datasource_password: "{{ vault_datasource_password }}"
