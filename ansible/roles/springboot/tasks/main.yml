@@ -68,4 +68,3 @@
   service:
     name: springboot
     enabled: yes
-    state: started
