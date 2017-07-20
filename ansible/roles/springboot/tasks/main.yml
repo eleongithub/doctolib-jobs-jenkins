@@ -64,7 +64,12 @@
   include: iptables.yml
   when: springboot_iptables_enabled
 
-- name: Enable & start Spring Boot service
+- name: Enable Spring Boot service
   service:
     name: springboot
     enabled: yes
+
+- name: Start Spring Boot service
+  service:
+    name: springboot
+    state: started
