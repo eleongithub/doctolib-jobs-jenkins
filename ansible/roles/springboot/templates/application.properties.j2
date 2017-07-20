@@ -1,4 +1,6 @@
 server.port={{ springboot_http_port }}
+
+{% if springboot_enabled_database %}
 spring.jpa.database={{ springboot_database }}
 spring.datasource.platform={{ springboot_datasource_patform }}
 spring.jpa.show-sql={{ springboot_show_sql }}
@@ -6,3 +8,17 @@ spring.database.driverClassName={{ springboot_database_driverClassName }}
 spring.datasource.url={{ springboot_datasource_url }}
 spring.datasource.username={{ springboot_datasource_username }}
 spring.datasource.password={{ springboot_datasource_password }}
+{% endif %}
+
+{% if springboot_enabled_access_logs %}
+server.tomcat.accesslog.buffered=true # Buffer output such that it is only flushed periodically.
+server.tomcat.accesslog.directory="{{ springboot_logs_directory }}" # Directory in which log files are created. Can be relative to the tomcat base dir or absolute.
+server.tomcat.accesslog.enabled=true # Enable access log.
+server.tomcat.accesslog.file-date-format=.yyyy-MM-dd # Date format to place in log file name.
+server.tomcat.accesslog.pattern=common # Format pattern for access logs.
+server.tomcat.accesslog.prefix=localhost_access_log # Log file name prefix.
+server.tomcat.accesslog.rename-on-rotate=false # Defer inclusion of the date stamp in the file name until rotate time.
+server.tomcat.accesslog.request-attributes-enabled=false # Set request attributes for IP address, Hostname, protocol and port used for the request.
+server.tomcat.accesslog.rotate=true # Enable access log rotation.
+server.tomcat.accesslog.suffix=.log # Log file name suffix.
+{% endif %}
