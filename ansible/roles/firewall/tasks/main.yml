@@ -26,6 +26,10 @@
   service:
     name: firewall
     enabled: yes
+
+- name: Start firewall service
+  service:
+    name: firewall
     state: started
 
 - name: Test with goss
