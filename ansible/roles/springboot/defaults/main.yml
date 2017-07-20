@@ -3,7 +3,7 @@
 springboot_user: springboot
 springboot_group: springboot
 springboot_main_directory: /opt/springboot
-springboot_java_command:"java"
+springboot_java_command: "java"
 springboot_conf_directory: "{{ springboot_main_directory }}/conf"
 springboot_jar_directory: "{{ springboot_main_directory }}/jar"
 springboot_logs_directory: "{{ springboot_main_directory }}/logs"
