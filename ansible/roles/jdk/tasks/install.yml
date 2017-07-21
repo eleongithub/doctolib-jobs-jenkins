@@ -8,8 +8,6 @@
   file:
     path: "{{ jdk_versions }}"
     state: directory
-    owner: root
-    group: root
   when: "not jdk_versions_dir_exists.stat.exists"
 
 - name: Delete java home link
@@ -21,44 +19,62 @@
   shell: getconf LONG_BIT || echo "Unknown architecture"
   register: os_architecture
 
-- name: Download and decompress jdk 32 bits Archive
-  unarchive:
-    src: "{{ jdk_32_url }}"
-    dest: "{{ jdk_versions }}/"
-    owner: root
-    group: root
+- name: Download jdk 32 bits Archive
+  get_url:
+    url: "{{ jdk_32_url }}"
+    dest: "/opt/{{ jdk_tarball_name_32 }}"
     validate_certs: no
-    remote_src: True
   when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
-- name: Download and decompress jdk 64 bits Archive
-  unarchive:
-    src: "{{ jdk_64_url }}"
-    dest: "{{ jdk_versions }}/"
-    owner: root
-    group: root
-    validate_certs: no
-    remote_src: True
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
-
-- name: Create link to the jdk directory
-  file:
-    src: "{{ jdk_last_version }}"
-    dest: "{{ jdk_java_home }}"
-    state: link
-
-- name: Add/Update environments variables
-  blockinfile:
-    dest: "/etc/profile"
-    insertafter: EOF
-    block: |
-      # Java Home
-      JAVA_HOME="{{ jdk_java_home }}"
-      export JAVA_HOME
-      # Update PATH
-      PATH=$PATH:"$JAVA_HOME/bin"
-      export PATH
-    state: present
-
-- name: Relaod environments variables
-  shell: . /etc/profile
+#- name: Decompress jdk 32 bits Archive
+#  unarchive:
+#    src: "/tmp/{{ jdk_tarball_name_32 }}"
+#    dest: "{{ jdk_versions }}/"
+#  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
+#
+#- name: Delete jdk 32 bits Archive
+#  file:
+#    path: "/tmp/{{ jdk_tarball_name_32 }}"
+#    state: absent
+#  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
+#
+#- name: Download jdk 64 bits Archive
+#  get_url:
+#    url: "{{ jdk_64_url }}"
+#    dest: "/tmp/{{ jdk_tarball_name_64 }}"
+#    validate_certs: no
+#  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+#
+#- name: Decompress jdk 64 bits Archive
+#  unarchive:
+#    src: "/tmp/{{ jdk_tarball_name_64 }}"
+#    dest: "{{ jdk_versions }}/"
+#  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+#
+#- name: Delete jdk 64 bits Archive
+#  file:
+#    path: "/tmp/{{ jdk_tarball_name_64 }}"
+#    state: absent
+#  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+#
+#- name: Create link to the jdk directory
+#  file:
+#    src: "{{ jdk_last_version }}"
+#    dest: "{{ jdk_java_home }}"
+#    state: link
+#
+#- name: Add/Update environments variables
+#  blockinfile:
+#    dest: "/etc/profile"
+#    insertafter: EOF
+#    block: |
+#      # Java Home
+#      JAVA_HOME="{{ jdk_java_home }}"
+#      export JAVA_HOME
+#      # Update PATH
+#      PATH=$PATH:"$JAVA_HOME/bin"
+#      export PATH
+#    state: present
+#
+#- name: Relaod environments variables
+#  shell: . /etc/profile
