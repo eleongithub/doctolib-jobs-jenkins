@@ -31,3 +31,5 @@
   roles:
      - { role: jdk, tags: ['jdk'] }
      - { role: springboot, tags: ['springboot'] }
+  environment:
+      TMPDIR: /opt
