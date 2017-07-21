@@ -8,6 +8,8 @@
   file:
     path: "{{ jdk_versions }}"
     state: directory
+    owner: root
+    group: root
   when: "not jdk_versions_dir_exists.stat.exists"
 
 - name: Delete java home link
@@ -19,42 +21,24 @@
   shell: getconf LONG_BIT || echo "Unknown architecture"
   register: os_architecture
 
-- name: Download jdk 32 bits Archive
-  get_url:
-    url: "{{ jdk_32_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_32 }}"
-    validate_certs: no
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
-
-- name: Decompress jdk 32 bits Archive
+- name: Download and decompress jdk 32 bits Archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_32 }}"
+    src: "{{ jdk_32_url }}"
     dest: "{{ jdk_versions }}/"
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
-
-- name: Delete jdk 32 bits Archive
-  file:
-    path: "/tmp/{{ jdk_tarball_name_32 }}"
-    state: absent
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
-
-- name: Download jdk 64 bits Archive
-  get_url:
-    url: "{{ jdk_64_url }}"
-    dest: "/tmp/{{ jdk_tarball_name_64 }}"
+    owner: root
+    group: root
     validate_certs: no
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+    remote_src: True
+  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
 
-- name: Decompress jdk 64 bits Archive
+- name: Download and decompress jdk 64 bits Archive
   unarchive:
-    src: "/tmp/{{ jdk_tarball_name_64 }}"
+    src: "{{ jdk_64_url }}"
     dest: "{{ jdk_versions }}/"
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
-
-- name: Delete jdk 64 bits Archive
-  file:
-    path: "/tmp/{{ jdk_tarball_name_64 }}"
-    state: absent
+    owner: root
+    group: root
+    validate_certs: no
+    remote_src: True
   when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Create link to the jdk directory
