@@ -19,13 +19,14 @@
   shell: getconf LONG_BIT || echo "Unknown architecture"
   register: os_architecture
 
+
 - name: Download and decompress jdk 32 bits Archive
   unarchive:
     src: "{{ jdk_32_url }}"
     dest: "{{ jdk_versions }}/"
     remote_src: True
     validate_certs: no
-  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
+  when: "ansible_userspace_bits == '{{ jdk_os_32 }}'"
 
 - name: Download and decompress jdk 64 bits Archive
   get_url:
@@ -33,7 +34,25 @@
     dest: "{{ jdk_versions }}/"
     remote_src: True
     validate_certs: no
-  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
+  when: "ansible_userspace_bits == '{{ jdk_os_64 }}'"
+
+
+#
+#- name: Download and decompress jdk 32 bits Archive
+#  unarchive:
+#    src: "{{ jdk_32_url }}"
+#    dest: "{{ jdk_versions }}/"
+#    remote_src: True
+#    validate_certs: no
+#  when: "os_architecture.stdout == '{{ jdk_os_32 }}'"
+#
+#- name: Download and decompress jdk 64 bits Archive
+#  get_url:
+#    url: "{{ jdk_64_url }}"
+#    dest: "{{ jdk_versions }}/"
+#    remote_src: True
+#    validate_certs: no
+#  when: "os_architecture.stdout == '{{ jdk_os_64 }}'"
 
 - name: Create link to the jdk directory
   file:
