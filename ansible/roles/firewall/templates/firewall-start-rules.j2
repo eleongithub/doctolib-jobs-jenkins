@@ -39,21 +39,6 @@ $IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p icmp -j ACC
 $IPTABLES -A INPUT -i {{ firewall_network_interface }} -p tcp -m multiport --dports 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp -m multiport --dports 80,443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 
-# Allow open SSH Input & Output connections to receive input/output trafic.
-# $IPTABLES -A INPUT -i {{ firewall_network_interface }} -p tcp --dport 22 -j ACCEPT -m comment --comment "Input SSH trafic"
-# $IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp --sport 22 -j ACCEPT -m comment --comment "Output SSH trafic"
-
-
-# Add a rule for each allow input port
-{% for allow_input_port in firewall_input_allowed_ports %}
-$IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_input_port.protocol }} --dport {{ allow_input_port.port }} -j ACCEPT -m comment --comment "{{ allow_input_port.comment }}"
-{% endfor %}
-
-{% if nexus_repository_port != None %}
-$IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p tcp --dport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus input trafic"
-$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p tcp --sport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
-{% endif %}
-
 
 # Add a rule for each allow output port
 {% for allow_output_port in firewall_output_allowed_ports %}

@@ -22,8 +22,6 @@ firewall_output_allowed_ports:
  - { port: "53", protocol: "tcp", comment: "TCP - DNS Output trafic" }
  - { port: "53", protocol: "udp", comment: "UDP - DNS Output trafic" }
 
-nexus_repository_port:
-
 firewall_enabled_logs_input_trafic: True
 firewall_enabled_logs_output_trafic: True
 firewall_goss_enabled: False

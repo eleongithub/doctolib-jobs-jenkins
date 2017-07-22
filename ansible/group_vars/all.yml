@@ -1,6 +1,5 @@
 ---
-nexus_repository_port: "9081"
-nexus_url: "http://192.168.1.97:{{ nexus_repository_port }}/nexus"
+nexus_url: "http://192.168.1.97:9081/nexus"
 jdk_java_version: 1.8.0_131
 jdk_last_version: "{{ jdk_versions }}/jdk{{ jdk_java_version }}"
 jdk_tarball_name_32: jdk-8u131-linux-i586.tar.gz
