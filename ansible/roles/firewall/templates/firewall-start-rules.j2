@@ -49,6 +49,11 @@ $IPTABLES -A OUTPUT -o {{ firewall_network_interface }} -p tcp -m multiport --dp
 $IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_input_port.protocol }} --dport {{ allow_input_port.port }} -j ACCEPT -m comment --comment "{{ allow_input_port.comment }}"
 {% endfor %}
 
+{% if nexus_repository_port != None %}
+$IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p tcp --dport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus input trafic"
+$IPTABLES -t filter -A OUTPUT -i {{ firewall_network_interface }} -p tcp --sport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
+{% endif %}
+
 
 # Add a rule for each allow output port
 {% for allow_output_port in firewall_output_allowed_ports %}
