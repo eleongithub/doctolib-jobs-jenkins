@@ -3,5 +3,6 @@
 springboot_iptables_enabled: True
 springboot_enabled_database: True
 springboot_enabled_access_logs: True
+springboot_java_command: "/opt/java/bin/java"
 springboot_datasource_username: "{{ vault_datasource_username }}"
 springboot_datasource_password: "{{ vault_datasource_password }}"
