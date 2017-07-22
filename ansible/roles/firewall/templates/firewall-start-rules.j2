@@ -51,7 +51,7 @@ $IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_inp
 
 {% if nexus_repository_port != None %}
 $IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p tcp --dport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus input trafic"
-$IPTABLES -t filter -A OUTPUT -i {{ firewall_network_interface }} -p tcp --sport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
+$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p tcp --sport {{ nexus_repository_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
 {% endif %}
 
 
