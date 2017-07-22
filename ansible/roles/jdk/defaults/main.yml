@@ -1,7 +1,7 @@
 ---
 # defaults file for jdk
 
-jdk_java_version: 1.8.0_141
+jdk_java_version: 1.8.0_131
 jdk_versions: "/opt/jdk_versions"
 jdk_java_home: "/opt/java"
 jdk_last_version: "{{ jdk_versions }}/jdk{{ jdk_java_version }}"
