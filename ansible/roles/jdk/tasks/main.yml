@@ -1,7 +1,7 @@
 ---
 # tasks file for jdk
 - name: Get JDK/Java version installed on the node
-  shell: "{{ jdk_java_home }}/bin/java -version 2>&1"
+  shell: "java -version 2>&1"
   register: java_version_result
   ignore_errors: True
 
