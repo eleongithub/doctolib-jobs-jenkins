@@ -45,6 +45,6 @@
   shell: . /etc/profile
 
 - name: Update alternatives
-   shell: "{{ item }}"
-   with_items:
+  command: "{{ item }}"
+  with_items:
     - "{{ jdk_update_alternatives_commands }}"
