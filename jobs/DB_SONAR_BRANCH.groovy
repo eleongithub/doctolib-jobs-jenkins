@@ -7,6 +7,11 @@ def job = mavenJob('DB_SONAR_BRANCH'){
     // Description du job.
     description('Ce job permet de lancer un scan sonar sur une branche de  l\'application doctolib')
 
+//    Exécution automatique du job tous les jours à 6h et à 13H
+    triggers {
+        cron("H 6,13 * * *")
+    }
+
 
 //    Définir les paramètres du Job
     parameters {
