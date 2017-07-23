@@ -10,10 +10,6 @@
     state: directory
   when: "not jdk_versions_dir_exists.stat.exists"
 
-- name: Delete java home link
-  file:
-    dest: "{{ jdk_java_home }}"
-    state: absent
 
 - name: Download and decompress jdk 32 bits Archive
   unarchive:
@@ -31,11 +27,6 @@
     validate_certs: no
   when: "ansible_userspace_bits == '64'"
 
-- name: Create link to the jdk directory
-  file:
-    src: "{{ jdk_last_version }}"
-    dest: "{{ jdk_java_home }}"
-    state: link
 
 - name: Add/Update environments variables
   blockinfile:
@@ -52,3 +43,13 @@
 
 - name: Relaod environments variables
   shell: . /etc/profile
+
+ - name: Update alternatives
+   command: "{{ item }}"
+   with_items:
+     - update-alternatives --install /usr/bin/java java {{ jdk_java_home }}/bin/java 1
+     - update-alternatives --install /usr/bin/javac javac {{ jdk_java_home }}/bin/javac 1
+     - update-alternatives --install /usr/bin/jar jar {{ jdk_java_home }}/bin/jar 1
+     - update-alternatives --set java {{ jdk_java_home }}/bin/java
+     - update-alternatives --set javac {{ jdk_java_home }}/bin/javac
+     - update-alternatives --set jar {{ jdk_java_home }}/bin/jar
