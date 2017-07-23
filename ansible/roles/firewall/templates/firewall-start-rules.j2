@@ -47,12 +47,12 @@ $IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p {{ allow_inp
 
 # Add a rule for each allow output port
 {% for allow_output_port in firewall_output_allowed_ports %}
-$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p {{ allow_output_port.protocol }} --sport {{ allow_output_port.port }} -j ACCEPT -m comment --comment "{{ allow_output_port.comment }}"
+$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p {{ allow_output_port.protocol }} --dport {{ allow_output_port.port }} -j ACCEPT -m comment --comment "{{ allow_output_port.comment }}"
 {% endfor %}
 
 {% if firewall_nexus_port != None %}
 $IPTABLES -t filter -A INPUT -i {{ firewall_network_interface }} -p tcp --dport {{ firewall_nexus_port }} -j ACCEPT -m comment --comment "Nexus input trafic"
-$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p tcp --sport {{ firewall_nexus_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
+$IPTABLES -t filter -A OUTPUT -o {{ firewall_network_interface }} -p tcp --dport {{ firewall_nexus_port }} -j ACCEPT -m comment --comment "Nexus output trafic"
 {% endif %}
 
 # Log input trafic.
