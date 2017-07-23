@@ -44,7 +44,7 @@
 - name: Relaod environments variables
   shell: . /etc/profile
 
- - name: Update alternatives
+- name: Update alternatives
    command: "{{ item }}"
    with_items:
      - update-alternatives --install /usr/bin/java java {{ jdk_java_home }}/bin/java 1
