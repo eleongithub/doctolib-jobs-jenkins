@@ -12,10 +12,3 @@ jdk_tarball_name_64: jdk-8u141-linux-x64.tar.gz
 # Modifier les URLs de téléchargement des JDKs si nécessaires
 jdk_32_url: "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-i586.tar.gz"
 jdk_64_url: "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz"
-jdk_update_alternatives_commands:
-   -{ "update-alternatives --install /usr/bin/java java {{ jdk_java_home }}/bin/java 1" }
-   -{ "update-alternatives --install /usr/bin/javac javac {{ jdk_java_home }}/bin/javac 1" }
-   -{ "update-alternatives --install /usr/bin/jar jar {{ jdk_java_home }}/bin/jar 1" }
-   -{ "update-alternatives --set java {{ jdk_java_home }}/bin/java" }
-   -{ "update-alternatives --set javac {{ jdk_java_home }}/bin/javac" }
-   -{ "update-alternatives --set jar {{ jdk_java_home }}/bin/jar" }
