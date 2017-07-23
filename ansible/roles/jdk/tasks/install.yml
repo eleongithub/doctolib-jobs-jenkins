@@ -45,7 +45,8 @@
   shell: . /etc/profile
 
 - name: Update alternatives
-   command: "{{ item }}"
+   command: >
+     "{{ item }}"
    with_items:
      - "update-alternatives --install /usr/bin/java java {{ jdk_java_home }}/bin/java 1"
      - "update-alternatives --install /usr/bin/javac javac {{ jdk_java_home }}/bin/javac 1"
