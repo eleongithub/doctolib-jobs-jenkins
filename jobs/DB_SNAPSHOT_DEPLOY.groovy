@@ -12,8 +12,6 @@ def job = freeStyleJob('DB_SNAPSHOT_DEPLOY') {
         booleanParam('debug', true, 'Exécuter le job en mode Debug.')
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
         choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
-        stringParam('branch', 'master', 'Branche à utiliser pour effectuer le deploiement')
-
     }
 
 //    Définir le JDK par défaut
