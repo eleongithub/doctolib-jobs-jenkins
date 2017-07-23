@@ -47,4 +47,9 @@
 - name: Update alternatives
   command: "{{ item }}"
   with_items:
-    - "{{ jdk_update_alternatives_commands }}"
+    - "update-alternatives --install /usr/bin/java java {{ jdk_java_home }}/bin/java 1"
+    - "update-alternatives --install /usr/bin/javac javac {{ jdk_java_home }}/bin/javac 1"
+    - "update-alternatives --install /usr/bin/jar jar {{ jdk_java_home }}/bin/jar 1"
+    - "update-alternatives --set java {{ jdk_java_home }}/bin/java"
+    - "update-alternatives --set javac {{ jdk_java_home }}/bin/javac"
+    - "update-alternatives --set jar {{ jdk_java_home }}/bin/jar"
