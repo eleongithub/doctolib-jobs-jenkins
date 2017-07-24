@@ -2,7 +2,7 @@ import utilities.Version
 import utilities.DbUtils
 
 // Super-Job qui lance un snapshot et un déploiement de l'application
-def job = freeStyleJob('DB_SNAPSHOT_DEPLOY') {
+def job = freeStyleJob('DB_SNAPSHOT_AND_DEPLOY') {
     description('Ce job réalise un snapshot et un déploiement sur un serveur.')
 
 //    Définir les paramètres du Job
@@ -30,7 +30,7 @@ def job = freeStyleJob('DB_SNAPSHOT_DEPLOY') {
                 }
             }
         }
-
+//        Ce 2eme job sera exécuté si et seulement si le 1er job s'est déroulé avec succès
         downstreamParameterized {
             trigger('DB_DEPLOIEMENT') {
                 block {
