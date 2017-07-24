@@ -24,9 +24,9 @@ if [ "${debug}" == "true" ]; then
 fi
 
 
-if [ "${firewall}" == "true" ]; then
-    tags="${tags},firewall"
-fi
+#if [ "${firewall}" == "true" ]; then
+#    tags="${tags},firewall"
+#fi
 
 if [ "${jdk}" == "true" ]; then
      tags="${tags},jdk"
