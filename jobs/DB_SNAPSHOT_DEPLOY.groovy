@@ -29,6 +29,9 @@ def job = freeStyleJob('DB_SNAPSHOT_DEPLOY') {
                     predefinedProp('branch', '$branch')
                 }
             }
+        }
+
+        downstreamParameterized {
             trigger('DB_DEPLOIEMENT') {
                 block {
                     buildStepFailure('FAILURE')
@@ -46,6 +49,7 @@ def job = freeStyleJob('DB_SNAPSHOT_DEPLOY') {
                 }
             }
         }
+
     }
     //    TODO Envoyer un mail de notification à la fin du release
 }
