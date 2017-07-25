@@ -22,6 +22,10 @@
   with_items:
    - "{{ firewall_script_files }}"
 
+- name: Reload service configuration.
+  command: >
+    systemctl daemon-reload
+
 - name: Enable firewall service
   service:
     name: firewall
