@@ -3,12 +3,12 @@
 ###################
 # Security
 ###################
-#- hosts: all
-#  vars_files:
-#   - "password/password-{{env}}.yml"
-#  become: yes
-#  roles:
-#    - { role: firewall, tags: ['firewall'] }
+- hosts: all
+  vars_files:
+   - "password/password-{{env}}.yml"
+  become: yes
+  roles:
+    - { role: firewall, tags: ['firewall'] }
 
 # ###################
 # # Data Base
