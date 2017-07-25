@@ -23,7 +23,7 @@ def job = freeStyleJob('DB_DEPLOIEMENT'){
         booleanParam('postgres', false, 'Installation du serveur de base de données PostgreSQL.')
         booleanParam('postgres_instance', false, 'Installation de(s) instance(s) de base de données.')
         booleanParam('springboot', false, 'Installation de springboot.')
-//        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
+        nonStoredPasswordParam('vaultPassword', 'Mot de passe pour décrypter les variables sécurisées avec Ansible-vault.')
     }
 
     //    Récupérer sur Git la branche à utiliser pour faire le deploiement
