@@ -16,6 +16,7 @@ springboot_apps_package: "jar"
 springboot_apps_jar_name: "db-restfull.jar"
 springboot_apps_conf_files:
  - { src: "application.properties.j2", dest: "{{ springboot_conf_directory }}/application.properties" }
+ - { src: "db-service.properties.j2", dest: "{{ springboot_conf_directory }}/db-service.properties" }
 springboot_http_port: 8080
 springboot_iptables_enabled: False
 springboot_network_interface: "eth0"
@@ -33,3 +34,5 @@ springboot_datasource_password:
 
 # Enable/Disable access logs configuration
 springboot_enabled_access_logs: False
+
+springboot_token_duration: 120
