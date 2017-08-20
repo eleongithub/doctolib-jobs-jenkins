@@ -1,16 +1,55 @@
-server.port={{ springboot_http_port }}
+# To get all properties for Spring boot, look at here : https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
-{% if springboot_enabled_database %}
+{% if springboot_ssl_enabled %}
+# Port HTTP du serveur
+server.port={{ springboot_http_port }}
+{% else %}
+# Port HTTPS du serveur
+server.port={{ springboot_https_port }}
+{% endif %}
+
+# Paramètre de la base de données
 spring.jpa.database={{ springboot_database }}
 spring.datasource.platform={{ springboot_datasource_patform }}
 spring.jpa.show-sql={{ springboot_show_sql }}
 spring.database.driverClassName={{ springboot_database_driverClassName }}
 spring.datasource.url={{ springboot_datasource_url }}
+# TODO : Les paramètres ci-dessous seront passés en paramètres Vault
 spring.datasource.username={{ springboot_datasource_username }}
 spring.datasource.password={{ springboot_datasource_password }}
+
+# Logging
+logging.level.org.springframework.web=INFO
+logging.level.org.hibernate=WARN
+logging.level.com.syscom=WARN
+# Logging pattern for the console
+logging.pattern.console= "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+# Logging pattern for file
+logging.pattern.file= "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#output to a log file
+logging.file={{ springboot_logs_file }}
+
+#Paramètres du serveur de mail
+spring.mail.host={{ springboot_mail_host }}
+spring.mail.port={{ springboot_mail_port }}
+
+{% if springboot_mail_username != None %}
+spring.mail.username={{ springboot_mail_username }}
 {% endif %}
 
-{% if springboot_enabled_access_logs %}
+{% if springboot_mail_password != None %}
+spring.mail.password={{ springboot_mail_password }}
+{% endif %}
+
+{% if springboot_mail_properties_mail_smtp_auth != None %}
+spring.mail.properties.mail.smtp.auth={{ springboot_mail_properties_mail_smtp_auth }}
+{% endif %}
+
+{% if springboot_mail_properties_mail_smtp_starttls_enable != None %}
+spring.mail.properties.mail.smtp.starttls.enable={{ springboot_mail_properties_mail_smtp_starttls_enable }}
+{% endif %}
+
+# Configuration pour les fichiers logs d'accès au serveur
 server.tomcat.accesslog.buffered=true
 server.tomcat.accesslog.directory={{ springboot_logs_directory }}
 server.tomcat.accesslog.enabled=true
@@ -21,4 +60,13 @@ server.tomcat.accesslog.rename-on-rotate=false
 server.tomcat.accesslog.request-attributes-enabled=false
 server.tomcat.accesslog.rotate=true
 server.tomcat.accesslog.suffix=.log
+
+{% if springboot_ssl_enabled %}
+# Parametre pour activer la configuration SSL (Voir classe SpringBootSSLConfiguration.java)
+enabled.ssl=true
+# Configuration SSL pour l'application Spring boot
+server.ssl.key-store={{ springboot_keystore_file }}
+server.ssl.key-store-password={{ springboot_keystore_password }}
+server.ssl.keyStoreType={{ springboot_keystore_type }}
+server.ssl.keyAlias={{ springboot_keystore_alias }}
 {% endif %}

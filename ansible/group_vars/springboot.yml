@@ -2,6 +2,7 @@
 
 springboot_iptables_enabled: True
 springboot_enabled_database: True
+springboot_ssl_enabled: True
 springboot_enabled_access_logs: True
 springboot_java_command: "/opt/jdk_versions/jdk1.8.0_131/bin/java"
 springboot_datasource_username: "{{ vault_datasource_username }}"

@@ -7,6 +7,7 @@ springboot_java_command: "java"
 springboot_conf_directory: "{{ springboot_main_directory }}/conf"
 springboot_jar_directory: "{{ springboot_main_directory }}/jar"
 springboot_logs_directory: "{{ springboot_main_directory }}/logs"
+springboot_logs_file: "{{ springboot_logs_directory }}/application.log"
 springboot_nexus_url: "{{ nexus_url }}/service/local/artifact/maven/content"
 springboot_apps_repository: "snapshots"
 springboot_apps_groupid: "com.syscom"
@@ -18,11 +19,10 @@ springboot_apps_conf_files:
  - { src: "application.properties.j2", dest: "{{ springboot_conf_directory }}/application.properties" }
  - { src: "db-service.properties.j2", dest: "{{ springboot_conf_directory }}/db-service.properties" }
 springboot_http_port: 8080
+springboot_https_port: 8443
 springboot_iptables_enabled: False
 springboot_network_interface: "eth0"
 
-# Enable/Disable database configuration
-springboot_enabled_database: False
 springboot_database: POSTGRESQL
 springboot_datasource_patform: postgres
 springboot_show_sql: true
@@ -32,7 +32,29 @@ springboot_datasource_url: "jdbc:postgresql://localhost:5432/springboot?currentS
 springboot_datasource_username:
 springboot_datasource_password:
 
-# Enable/Disable access logs configuration
-springboot_enabled_access_logs: False
-
+# Duree de validité d'un jeton d'authentification exprimé en minutes
 springboot_token_duration: 120
+
+#Paramètres du serveur de mail
+springboot_mail_host: localhost
+springboot_mail_port: 25
+springboot_mail_username:
+springboot_mail_password:
+springboot_mail_properties_mail_smtp_auth:
+springboot_mail_properties_mail_smtp_starttls_enable:
+
+# Configuration SSL pour l'application Spring boot
+springboot_ssl_enabled: False
+springboot_keystore_directory: "{{ springboot_conf_directory }}/keystore.p12"
+springboot_keystore_file: "{{ springboot_keystore_directory }}/keystore.jks"
+springboot_keystore_type: PKCS12
+springboot_keystore_password: {{ vault_springboot_keystore_password }}
+springboot_keystore_alias: keyAlias
+springboot_dns: localhost
+springboot_springboot_ssl_protocol: TLSv1+TLSv1.1+TLSv1.2
+springboot_ssl_country: FR
+springboot_ssl_state: Rhone
+springboot_ssl_locality: Lyon
+springboot_ssl_organisation: Syscom
+springboot_ssl_organisation_unit: IT
+springboot_keystore_subj: "CN={{ springboot_dns }}, OU={{ springboot_ssl_organisation_unit }}, O={{ springboot_ssl_organisation }}, L={{ springboot_ssl_locality }}, S={{ springboot_ssl_state }}, C={{ springboot_ssl_country }}"

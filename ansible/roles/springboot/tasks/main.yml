@@ -43,6 +43,9 @@
     mode: "0750"
   with_items: "{{ springboot_apps_conf_files }}"
 
+- include: ssl.yml
+  when: springboot_ssl_enabled
+
 - name: Download Spring Boot application jar
   get_url:
     url: "{{ springboot_nexus_url }}?r={{ springboot_apps_repository }}&g={{ springboot_apps_groupid }}&a={{ springboot_apps_artifactid }}&v={{ springboot_apps_version }}&p={{ springboot_apps_package }}"
