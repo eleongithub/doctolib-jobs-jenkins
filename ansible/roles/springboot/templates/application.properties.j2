@@ -65,8 +65,9 @@ server.tomcat.accesslog.suffix=.log
 # Parametre pour activer la configuration SSL (Voir classe SpringBootSSLConfiguration.java)
 enabled.ssl=true
 # Configuration SSL pour l'application Spring boot
+server.ssl.enabled=true
 server.ssl.key-store={{ springboot_keystore_file }}
 server.ssl.key-store-password={{ springboot_keystore_password }}
-server.ssl.keyStoreType={{ springboot_keystore_type }}
-server.ssl.keyAlias={{ springboot_keystore_alias }}
+server.ssl.key-store-type={{ springboot_keystore_type }}
+server.ssl.key-alias={{ springboot_keystore_alias }}
 {% endif %}
