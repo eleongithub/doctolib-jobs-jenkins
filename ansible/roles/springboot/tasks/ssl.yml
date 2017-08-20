@@ -14,5 +14,5 @@
   register: springboot_keystore_file_exists
 
 - name: Generating keystore and certifcate
-  shell: keytool -genkey -noprompt -trustcacerts -keyalg RSA -keysize 2048 -storetype {{ springboot_keystore_type }} -alias {{ springboot_keystore_alias }} -dname "{{ springboot_keystore_subj }}" -keypass {{ springboot_keystore_password }} -keystore {{ springboot_keystore_file }} -storepass {{ springboot_keystore_password }} -validity 3650
+  command: $JAVA_HOME/bin/keytool -genkey -noprompt -trustcacerts -keyalg RSA -keysize 2048 -storetype {{ springboot_keystore_type }} -alias {{ springboot_keystore_alias }} -dname "{{ springboot_keystore_subj }}" -keypass {{ springboot_keystore_password }} -keystore {{ springboot_keystore_file }} -storepass {{ springboot_keystore_password }} -validity 3650
   when: not springboot_keystore_file_exists.stat.exists
