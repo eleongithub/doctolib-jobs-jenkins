@@ -23,7 +23,7 @@
       -keysize 2048
       -storetype {{ springboot_keystore_type }}
       -alias {{ springboot_keystore_alias }}
-      -dname "{{ springboot_dns }}"
+      -dname "{{ springboot_keystore_subj }}"
       -keypass {{ springboot_keystore_password }}
       -keystore {{ springboot_keystore_file }}
       -storepass {{ springboot_keystore_password }}
