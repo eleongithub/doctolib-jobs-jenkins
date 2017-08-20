@@ -17,7 +17,7 @@ def job = freeStyleJob('DB_ANSIBLE_LINT_BRANCH'){
     scm {
         git {
             remote {
-                url('https://github.com/eleongithub/doctolib-jobs-kenkins.git')
+                url('https://github.com/eleongithub/doctolib-jobs-jenkins.git')
             }
             branch('${branch}')
         }
