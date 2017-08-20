@@ -8,6 +8,7 @@ def job = freeStyleJob('DB_SNAPSHOT_AND_DEPLOY') {
 //    Définir les paramètres du Job
     parameters {
         stringParam('branch', 'master', 'Branche à utiliser pour effectuer le snapshot')
+        stringParam('branchAnsible', 'master', 'Branche Ansible à utiliser pour effectuer le déploiement')
         stringParam('dbVersion', '1.0.0-SNAPSHOT', 'Version de l\'application.')
         booleanParam('debug', true, 'Exécuter le job en mode Debug.')
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
@@ -43,7 +44,7 @@ def job = freeStyleJob('DB_SNAPSHOT_AND_DEPLOY') {
                     predefinedProp('debug', 'true')
                     predefinedProp('environment', '$environment')
                     predefinedProp('repository', '$repository')
-                    predefinedProp('branch', '$branch')
+                    predefinedProp('branch', '$branchAnsible')
                     predefinedProp('dbVersion', '$dbVersion')
                     predefinedProp('installComplete', 'true')
                 }
