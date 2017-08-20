@@ -15,7 +15,7 @@
 
 - name: Generating keystore and certifcate
   command: >
-    keytool
+    $JAVA_HOME/bin/keytool
       -genkey
       -noprompt
       -trustcacerts
