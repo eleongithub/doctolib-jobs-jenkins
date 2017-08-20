@@ -45,7 +45,7 @@ springboot_mail_properties_mail_smtp_starttls_enable:
 
 # Configuration SSL pour l'application Spring boot
 springboot_ssl_enabled: False
-springboot_keystore_directory: "{{ springboot_conf_directory }}/keystore.p12"
+springboot_keystore_directory: "{{ springboot_conf_directory }}/keystore"
 springboot_keystore_file: "{{ springboot_keystore_directory }}/keystore.jks"
 springboot_keystore_type: PKCS12
 springboot_keystore_password: "{{ vault_springboot_keystore_password }}"
