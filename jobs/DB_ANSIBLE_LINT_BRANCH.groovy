@@ -1,6 +1,6 @@
 import utilities.DbUtils
 // Job de contrôle du code Ansible
-def job = mavenJob('DB_ANSIBLE_LINT_BRANCH'){
+def job = freeStyleJob('DB_ANSIBLE_LINT_BRANCH'){
 
     // Description du job.
     description('Ce job permet de contrôler la qualité du code Ansible de déploiement.')
