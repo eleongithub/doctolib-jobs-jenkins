@@ -7,12 +7,12 @@ def job = freeStyleJob('DB_SNAPSHOT_AND_DEPLOY') {
 
 //    Définir les paramètres du Job
     parameters {
-        stringParam('branch', 'master', 'Branche à utiliser pour effectuer le snapshot')
-        stringParam('branchAnsible', 'master', 'Branche Ansible à utiliser pour effectuer le déploiement')
+        stringParam('branch', 'master', 'Branche Java/J2EE (code applicatif) à utiliser pour effectuer le snapshot.')
+        stringParam('branchAnsible', 'master', 'Branche Ansible à utiliser pour effectuer le déploiement.')
         stringParam('dbVersion', '1.0.0-SNAPSHOT', 'Version de l\'application.')
         booleanParam('debug', true, 'Exécuter le job en mode Debug.')
         choiceParam('environment', ['dev', 'qualif', 'prod'], 'Environnement cible de déploiement.')
-        choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables')
+        choiceParam('repository', ['snapshots', 'releases'], 'Repository (Snapshots/Releases) sur lequel seront téléchargés des livrables.')
     }
 
 //    Définir le JDK par défaut
