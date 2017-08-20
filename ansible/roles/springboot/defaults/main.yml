@@ -48,7 +48,7 @@ springboot_ssl_enabled: False
 springboot_keystore_directory: "{{ springboot_conf_directory }}/keystore.p12"
 springboot_keystore_file: "{{ springboot_keystore_directory }}/keystore.jks"
 springboot_keystore_type: PKCS12
-springboot_keystore_password: {{ vault_springboot_keystore_password }}
+springboot_keystore_password: "{{ vault_springboot_keystore_password }}"
 springboot_keystore_alias: keyAlias
 springboot_dns: localhost
 springboot_springboot_ssl_protocol: TLSv1+TLSv1.1+TLSv1.2
