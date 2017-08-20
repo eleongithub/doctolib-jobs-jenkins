@@ -19,7 +19,6 @@ springboot_apps_conf_files:
  - { src: "application.properties.j2", dest: "{{ springboot_conf_directory }}/application.properties" }
  - { src: "db-service.properties.j2", dest: "{{ springboot_conf_directory }}/db-service.properties" }
 springboot_http_port: 8080
-springboot_https_port: 8443
 springboot_iptables_enabled: False
 springboot_network_interface: "eth0"
 

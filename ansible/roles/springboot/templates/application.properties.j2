@@ -1,12 +1,7 @@
 # To get all properties for Spring boot, look at here : https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
-{% if springboot_ssl_enabled %}
 # Port HTTP du serveur
 server.port={{ springboot_http_port }}
-{% else %}
-# Port HTTPS du serveur
-server.port={{ springboot_https_port }}
-{% endif %}
 
 # Paramètre de la base de données
 spring.jpa.database={{ springboot_database }}
@@ -60,14 +55,3 @@ server.tomcat.accesslog.rename-on-rotate=false
 server.tomcat.accesslog.request-attributes-enabled=false
 server.tomcat.accesslog.rotate=true
 server.tomcat.accesslog.suffix=.log
-
-{% if springboot_ssl_enabled %}
-# Parametre pour activer la configuration SSL (Voir classe SpringBootSSLConfiguration.java)
-enabled.ssl=true
-# Configuration SSL pour l'application Spring boot
-server.ssl.enabled=true
-server.ssl.key-store={{ springboot_keystore_file }}
-server.ssl.key-store-password={{ springboot_keystore_password }}
-server.ssl.key-store-type={{ springboot_keystore_type }}
-server.ssl.key-alias={{ springboot_keystore_alias }}
-{% endif %}
