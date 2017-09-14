@@ -6,4 +6,4 @@
   ignore_errors: True
 
 - include: install.yml
-  when: ((java_version_result|failed) or ('{{ jdk_java_version }}' not in '{{ java_version_result.stdout }}'))
+  when: (({{ java_version_result }}|failed) or ('{{ jdk_java_version }}' not in '{{ java_version_result.stdout }}'))
